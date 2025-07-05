@@ -1,52 +1,36 @@
-// Arithmetic Functions
-function add(num1, num2) {
-  return num1 + num2;
+function add(a, b) {
+  return a + b;
 }
 
-function subtract(num1, num2) {
-  return num1 - num2;
+function subtract(a, b) {
+  return a - b;
 }
 
-function multiply(num1, num2) {
-  return num1 * num2;
+function multiply(a, b) {
+  return a * b;
 }
 
-function divide(num1, num2) {
-  if (num2 === 0) {
-    return "Cannot divide by zero";
-  }
-  return num1 / num2;
+function divide(a, b) {
+  return b !== 0 ? a / b : "Cannot divide by zero";
 }
-
-// Helper Function
-function getInputs() {
-  const number1 = parseFloat(document.getElementById("number1").value) || 0;
-  const number2 = parseFloat(document.getElementById("number2").value) || 0;
-  return [number1, number2];
-}
-
-// Display Result
-function displayResult(result) {
-  document.getElementById("calculation-result").textContent = result;
-}
-
-// Event Listeners
 document.getElementById("add").addEventListener("click", function () {
-  const [num1, num2] = getInputs();
-  displayResult(add(num1, num2));
+  calculate(add);
 });
 
 document.getElementById("subtract").addEventListener("click", function () {
-  const [num1, num2] = getInputs();
-  displayResult(subtract(num1, num2));
+  calculate(subtract);
 });
 
 document.getElementById("multiply").addEventListener("click", function () {
-  const [num1, num2] = getInputs();
-  displayResult(multiply(num1, num2));
+  calculate(multiply);
 });
 
 document.getElementById("divide").addEventListener("click", function () {
-  const [num1, num2] = getInputs();
-  displayResult(divide(num1, num2));
+  calculate(divide);
 });
+function calculate(operation) {
+  const number1 = parseFloat(document.getElementById("number1").value) || 0;
+  const number2 = parseFloat(document.getElementById("number2").value) || 0;
+  const result = operation(number1, number2);
+  document.getElementById("calculation-result").textContent = result;
+}
